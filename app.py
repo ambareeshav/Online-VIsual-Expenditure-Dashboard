@@ -1,4 +1,4 @@
-from dash import Dash, html, dash_table, dcc, Input, Output, callback
+from dash import Dash, html, dash_table, dcc, Input, Output, callback 
 import pandas as pd
 
 df = pd.read_excel('D:\Projects\Online Expenditure Dashboard\Data\Expenditure.xlsx')
@@ -25,7 +25,7 @@ app.layout = html.Div([
         editable=True,
         row_deletable=True
     ),
-    #dcc.Graph(figure=px.histogram(df, x='Category', y='Amount', histfunc='sum',))
+
     html.Div(id='Expenditure-Interactive-Dynamic')
 ])
 
@@ -50,9 +50,6 @@ def update_graphs(rows, derived_virtual_selected_rows):
 
     dff = df if rows is None else pd.DataFrame(rows)
 
-    '''colors = ['#7FDBFF' if i in derived_virtual_selected_rows else '#0074D9'
-            for i in range(len(dff))]'''
-            
     return [
         dcc.Graph(
             figure={
@@ -78,6 +75,5 @@ def update_graphs(rows, derived_virtual_selected_rows):
         
     ]
 
-# Run the app
 if __name__ == '__main__':
     app.run(debug=True)
